@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
         <title>问答系统</title>
@@ -50,4 +50,51 @@
                 }
         </script>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Page</title>
+</head>
+<body>
+    <h1>Interactive Page</h1>
+    <form id="input-form">
+        <label for="input">Request:</label>
+        <input type="text" id="input" name="input">
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <div id="output-container"></div>
+    
+    <script>
+        const form = document.getElementById('input-form');
+        const input = document.getElementById('input');
+        const outputContainer = document.getElementById('output-container');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            
+            // 构造发送给 Flask 的数据
+            const data = {input: input.value};
+            
+            // 发送请求给 Flask
+            
+            fetch('https://flask-production-a60c.up.railway.app/process_request', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => response.json())
+              .then(result => {
+                  // 显示处理结果到回答框
+                  outputContainer.innerText = result.output;
+              });
+        });
+    </script>
+</body>
 </html>
+
+
