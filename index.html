@@ -82,7 +82,7 @@
             // 发送请求给 Flask
             
             fetch('https://flask-production-a60c.up.railway.app/process_request', {
-                method: 'get',
+                method: 'post',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
